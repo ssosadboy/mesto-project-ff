@@ -1,5 +1,5 @@
 "use strick";
-const createCard = function (cardData, handleDelete) {
+const createCard = function (initialCards, handleDelete) {
   const cardTemplate = document.querySelector("#card-template");
   const cardElement = cardTemplate.content.cloneNode(true);
 
@@ -7,9 +7,9 @@ const createCard = function (cardData, handleDelete) {
   const cardTitle = cardElement.querySelector(".card__title");
   const deleteButton = cardElement.querySelector(".card__delete-button");
 
-  cardImage.src = cardData.link;
-  cardImage.alt = cardData.name;
-  cardTitle.textContent = cardData.name;
+  cardImage.src = initialCards.link;
+  cardImage.alt = initialCards.name;
+  cardTitle.textContent = initialCards.name;
 
   deleteButton.addEventListener("click", () => {
     handleDelete(cardElement);
@@ -27,8 +27,8 @@ const deleteCard = function (cardElement) {
 function renderCards(cards) {
   const placesList = document.querySelector(".places");
 
-  cards.forEach((cardData) => {
-    const card = createCard(cardData, deleteCard);
+  cards.forEach((initialCards) => {
+    const card = createCard(initialCards, deleteCard);
     placesList.append(card);
   });
 }
