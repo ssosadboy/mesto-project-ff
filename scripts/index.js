@@ -32,4 +32,3 @@ function renderCards(cards) {
     placesList.append(card);
   });
 }
-debugger;
