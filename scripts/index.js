@@ -1,9 +1,35 @@
-// @todo: Темплейт карточки
+"use strick";
+const createCard = function (cardData, handleDelete) {
+  const cardTemplate = document.querySelector("#card-template");
+  const cardElement = cardTemplate.content.cloneNode(true);
 
-// @todo: DOM узлы
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+  const deleteButton = cardElement.querySelector(".card__delete-button");
 
-// @todo: Функция создания карточки
+  cardImage.src = cardData.link;
+  cardImage.alt = cardData.name;
+  cardTitle.textContent = cardData.name;
 
-// @todo: Функция удаления карточки
+  deleteButton.addEventListener("click", () => {
+    handleDelete(cardElement);
+  });
 
-// @todo: Вывести карточки на страницу
+  return cardElement;
+};
+
+// Функция удаления карточки
+const deleteCard = function (cardElement) {
+  cardElement.remove();
+};
+
+// Функция рендеринга всех карточек
+function renderCards(cards) {
+  const placesList = document.querySelector(".places");
+
+  cards.forEach((cardData) => {
+    const card = createCard(cardData, deleteCard);
+    placesList.append(card);
+  });
+}
+debugger;
