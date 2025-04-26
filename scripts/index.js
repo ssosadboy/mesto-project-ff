@@ -1,7 +1,9 @@
-"use strick";
 const createCard = function (initialCards, handleDelete) {
   const cardTemplate = document.querySelector("#card-template");
-  const cardElement = cardTemplate.content.cloneNode(true);
+  const cardElement = document
+    .querySelector("#card-template")
+    .content.querySelector(".card")
+    .cloneNode(true);
 
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
@@ -24,12 +26,13 @@ const deleteCard = function (cardElement) {
 };
 
 // Функция рендеринга всех карточек
-function renderCards(cards) {
-  const placesList = document.querySelector(".places");
 
+const cardsContainer = document.querySelector(".places__list");
+
+function renderCards(cards) {
   cards.forEach((initialCards) => {
     const card = createCard(initialCards, deleteCard);
-    placesList.append(card);
+    cardsContainer.append(card);
   });
 }
 renderCards(initialCards);
